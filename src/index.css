@@ -1,0 +1,120 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+@config "../tailwind.config.js";
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+}
+
+/* Neutral, near-monochrome palette. Colour is reserved for status. */
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.985 0.002 90);
+  --foreground: oklch(0.2 0.005 260);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.2 0.005 260);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.955 0.003 90);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.955 0.003 90);
+  --muted-foreground: oklch(0.52 0.008 260);
+  --accent: oklch(0.945 0.003 90);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.58 0.2 27);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.915 0.004 90);
+  --input: oklch(0.89 0.004 90);
+  --ring: oklch(0.6 0.01 260);
+  --success: oklch(0.6 0.13 155);
+  --warning: oklch(0.72 0.15 70);
+  --danger: oklch(0.6 0.2 27);
+}
+
+.dark {
+  --background: oklch(0.155 0.004 260);
+  --foreground: oklch(0.96 0.003 260);
+  --card: oklch(0.195 0.005 260);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.22 0.005 260);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.96 0.003 260);
+  --primary-foreground: oklch(0.18 0.005 260);
+  --secondary: oklch(0.25 0.005 260);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.25 0.005 260);
+  --muted-foreground: oklch(0.68 0.008 260);
+  --accent: oklch(0.26 0.005 260);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.65 0.19 25);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.6 0.01 260);
+  --success: oklch(0.7 0.14 155);
+  --warning: oklch(0.78 0.14 75);
+  --danger: oklch(0.68 0.19 25);
+}
+
+/* Touch mode for shop-floor tablets: everything is sized in rem, so a larger
+   root size scales text and hit targets together. */
+html[data-touch] {
+  font-size: 18px;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+}
